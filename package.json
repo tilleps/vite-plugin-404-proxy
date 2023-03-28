@@ -1,0 +1,30 @@
+{
+  "name": "vite-plugin-404-proxy",
+  "description": "Vite plugin that proxies requests to a backend server when files are not found",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": "index.js",
+  "dependencies": {
+    "http-proxy": "^1.18.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tilleps/vite-plugin-404-proxy.git"
+  },
+  "keywords": [
+    "vite",
+    "proxy",
+    "fallback",
+    "backend"
+  ],
+  "author": "Eugene Song <tilleps@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tilleps/vite-plugin-404-proxy/issues"
+  },
+  "homepage": "https://github.com/tilleps/vite-plugin-404-proxy#readme"
+}
