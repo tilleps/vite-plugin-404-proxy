@@ -1,6 +1,6 @@
-const httpProxy = require("http-proxy");
+import httpProxy from "http-proxy";
 
-module.exports = function (options) {
+export default function (options) {
 
   // Support for port only (localhost)
   if (typeof options === "number") {

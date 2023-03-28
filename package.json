@@ -1,9 +1,14 @@
 {
   "name": "vite-plugin-404-proxy",
   "description": "Vite plugin that proxies requests to a backend server when files are not found",
-  "version": "0.1.0",
-  "type": "module",
-  "exports": "index.js",
+  "version": "0.1.1",
+  "main": "./index.js",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./index.mjs"
+    }
+  },
   "dependencies": {
     "http-proxy": "^1.18.1"
   },
