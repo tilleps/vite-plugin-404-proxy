@@ -1,16 +1,25 @@
 # vite-plugin-404-proxy
 
-Vite plugin that proxies requests to a backend server when files are not found
+Vite plugin that proxies requests to a backend server when files are not found.  Defaults to http://localhost:8080
+
 
 ```js
 // vite.config.ts
-import 404Proxy from "tilleps/vite-plugin-404-proxy";
+import proxyPlugin from "vite-plugin-404-proxy";
 
 export default {
   plugins: [
-    404Proxy()
+    proxyPlugin()
   ]
 }
+```
+
+
+## Installation
+
+
+```sh
+npm install --save-dev vite-plugin-404-proxy
 ```
 
 
@@ -22,12 +31,12 @@ Short hand options are provided below:
 Specify a port (host will be localhost)
 ```js
 // vite.config.ts
-import 404Proxy from "tilleps/vite-plugin-404-proxy";
+import proxyPlugin from "tilleps/vite-plugin-404-proxy";
 
 // Set to port 8080 (localhost)
 export default {
   plugins: [
-    404Proxy(8080)
+    proxyPlugin(8080)
   ]
 }
 ```
@@ -35,11 +44,11 @@ export default {
 Specify a target string
 ```js
 // vite.config.ts
-import 404Proxy from "tilleps/vite-plugin-404-proxy";
+import proxyPlugin from "tilleps/vite-plugin-404-proxy";
 
 export default {
   plugins: [
-    404Proxy("http://localhost:8080")
+    proxyPlugin("http://localhost:8080")
   ]
 }
 ```
@@ -54,11 +63,11 @@ const proxy = httpProxy.createProxyServer(options);
 
 ```js
 // vite.config.ts
-import 404Proxy from "tilleps/vite-plugin-404-proxy";
+import proxyPlugin from "tilleps/vite-plugin-404-proxy";
 
 export default {
   plugins: [
-    404Proxy({
+    proxyPlugin({
       target: {
         host: "localhost",
         port: 8080
