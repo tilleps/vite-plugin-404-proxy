@@ -31,7 +31,7 @@ Short hand options are provided below:
 Specify a port (host will be localhost)
 ```js
 // vite.config.ts
-import proxyPlugin from "tilleps/vite-plugin-404-proxy";
+import proxyPlugin from "vite-plugin-404-proxy";
 
 // Set to port 8080 (localhost)
 export default {
@@ -44,7 +44,7 @@ export default {
 Specify a target string
 ```js
 // vite.config.ts
-import proxyPlugin from "tilleps/vite-plugin-404-proxy";
+import proxyPlugin from "vite-plugin-404-proxy";
 
 export default {
   plugins: [
@@ -63,7 +63,7 @@ const proxy = httpProxy.createProxyServer(options);
 
 ```js
 // vite.config.ts
-import proxyPlugin from "tilleps/vite-plugin-404-proxy";
+import proxyPlugin from "vite-plugin-404-proxy";
 
 export default {
   plugins: [
