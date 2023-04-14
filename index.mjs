@@ -49,7 +49,6 @@ export default function (options) {
           server.middlewares.stack.splice(vite404MiddlewareIndex, 1);
         }
 
-
         //
         //  Add proxy middleware before error middleware
         //
@@ -61,6 +60,10 @@ export default function (options) {
           server.middlewares.stack.splice(errorMiddlewareIndex, 0, {
             route: "",
             handle: function vite404ProxyMiddleware(req, res, next) {
+              // undo the url change made by htmlFallbackMiddleware 
+              req.url = req.originalUrl;
+
+              // proxy
               proxy.web(req, res, next);
             }
           });

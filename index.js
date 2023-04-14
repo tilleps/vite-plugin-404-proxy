@@ -33,13 +33,42 @@ module.exports = function (options) {
       setImmediate(function () {
         const proxy = new httpProxy.createProxyServer(options);
 
-        const middleware = server.middlewares.stack.find(
+        function vite404ProxyMiddleware(req, res, next) {
+          proxy.web(req, res);
+        }
+
+        //
+        //  Remove existing 404 middleware
+        //  vite404Middleware is only added with appType: "spa" | "mpa"
+        //
+        const vite404MiddlewareIndex = server.middlewares.stack.findIndex(
           (v) => v.handle.name === "vite404Middleware"
         );
 
-        middleware.handle = async function viteRedirect404(req, res, next) {
-          proxy.web(req, res);
-        };
+        if (~vite404MiddlewareIndex) {
+          server.middlewares.stack.splice(vite404MiddlewareIndex, 1);
+        }
+
+        //
+        //  Add proxy middleware before error middleware
+        //
+        const errorMiddlewareIndex = server.middlewares.stack.findIndex(
+          (v) => v.handle.name === "viteErrorMiddleware"
+        );
+
+        if (~errorMiddlewareIndex) {
+          server.middlewares.stack.splice(errorMiddlewareIndex, 0, {
+            route: "",
+            handle: function vite404ProxyMiddleware(req, res, next) {
+              // undo the url change made by htmlFallbackMiddleware 
+              req.url = req.originalUrl;
+
+              // proxy
+              proxy.web(req, res, next);
+            }
+          });
+        }
+
       });
     }
   };
